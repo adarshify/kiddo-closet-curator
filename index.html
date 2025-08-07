@@ -1,24 +1,980 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>kiddo-closet-curator</title>
-    <meta name="description" content="Lovable Generated Project" />
-    <meta name="author" content="Lovable" />
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zoddle - Shop From Home</title>
+    <meta name="description" content="Book a personal shopping appointment for kids clothes at your doorstep" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="sfh-banner">
+        <img src="https://cdn.shopify.com/s/files/1/0924/1041/3419/files/HOME_PAGE_BANNER_v3.jpg?v=1753211100" class="banner-desktop" alt="Shop From Home Banner Desktop">
+        <img src="https://cdn.shopify.com/s/files/1/0924/1041/3419/files/Mobile_Banner_v4.jpg?v=1753212227" class="banner-mobile" alt="Shop From Home Banner Mobile">
+    </div>
 
-    <meta property="og:title" content="kiddo-closet-curator" />
-    <meta property="og:description" content="Lovable Generated Project" />
-    <meta property="og:type" content="website" />
-    <meta property="og:image" content="https://lovable.dev/opengraph-image-p98pqg.png" />
+    <div id="sfh-container">
+        <div class="progress-indicator" id="stepDots"></div>
 
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:site" content="@lovable_dev" />
-    <meta name="twitter:image" content="https://lovable.dev/opengraph-image-p98pqg.png" />
-  </head>
+        <form id="sfhForm" action="/contact#sfh-container" method="post">
+            <input type="hidden" name="form_type" value="customer">
+            <input type="hidden" name="utf8" value="✓">
+            <input type="hidden" id="customer-note" name="contact[note]">
+            <input type="hidden" id="customer-email" name="contact[email]">
 
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.tsx"></script>
-  </body>
+            <!-- Step 1: Gender Selection -->
+            <div class="field-group step active" data-step="1">
+                <div class="step-header">
+                    <i class="fas fa-child step-icon"></i>
+                    <h2>Let's start booking an appointment</h2>
+                    <p>It takes less than 2 minutes</p>
+                </div>
+                <label class="step-label">I want to book for a...</label>
+                <div class="gender-selection">
+                    <button type="button" class="gender-btn" data-gender="Boy">
+                        <i class="fas fa-mars"></i>
+                        <span>Boy</span>
+                    </button>
+                    <button type="button" class="gender-btn" data-gender="Girl">
+                        <i class="fas fa-venus"></i>
+                        <span>Girl</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Step 2: Age Selection -->
+            <div class="field-group step" data-step="2">
+                <div class="step-header">
+                    <i class="fas fa-ruler step-icon"></i>
+                    <h2>What size fits your kid best?</h2>
+                </div>
+                <div id="ageOptions" class="age-grid">
+                    <button type="button" class="age-btn" data-age="0–1 Months">0–1 Months</button>
+                    <button type="button" class="age-btn" data-age="1–3 Months">1–3 Months</button>
+                    <button type="button" class="age-btn" data-age="3–6 Months">3–6 Months</button>
+                    <button type="button" class="age-btn" data-age="6–12 Months">6–12 Months</button>
+                    <button type="button" class="age-btn" data-age="12–18 Months">12–18 Months</button>
+                    <button type="button" class="age-btn" data-age="18–24 Months">18–24 Months</button>
+                    <button type="button" class="age-btn" data-age="2–3 Years">2–3 Years</button>
+                    <button type="button" class="age-btn" data-age="3–4 Years">3–4 Years</button>
+                    <button type="button" class="age-btn" data-age="4–5 Years">4–5 Years</button>
+                    <button type="button" class="age-btn" data-age="5–6 Years">5–6 Years</button>
+                    <button type="button" class="age-btn" data-age="6–7 Years">6–7 Years</button>
+                    <button type="button" class="age-btn" data-age="7–8 Years">7–8 Years</button>
+                </div>
+                <div class="step-nav">
+                    <button type="button" class="back-btn">
+                        <i class="fas fa-chevron-left"></i> Back
+                    </button>
+                </div>
+            </div>
+
+            <!-- Step 3: Contact Details -->
+            <div class="field-group step" data-step="3">
+                <div class="step-header">
+                    <i class="fas fa-user step-icon"></i>
+                    <h2>Great! We can help you</h2>
+                    <p>Can you please share a few details?</p>
+                </div>
+                <div class="form-row">
+                    <div class="input-group">
+                        <i class="fas fa-user input-icon"></i>
+                        <input type="text" name="contact[name]" placeholder="Full Name" required>
+                    </div>
+                    <div class="input-group">
+                        <i class="fas fa-phone input-icon"></i>
+                        <input type="tel" id="sfh-phone" placeholder="Phone Number" required>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="input-group address-input">
+                        <i class="fas fa-map-marker-alt input-icon"></i>
+                        <input type="text" id="sfh-address" placeholder="Full Address" required>
+                    </div>
+                    <div class="input-group">
+                        <i class="fas fa-map-pin input-icon"></i>
+                        <input type="text" id="sfh-pincode" placeholder="Pin Code" required>
+                    </div>
+                </div>
+                <div class="step-nav">
+                    <button type="button" class="back-btn">
+                        <i class="fas fa-chevron-left"></i> Back
+                    </button>
+                    <button type="button" id="contact-next-btn" class="next-btn">
+                        Next <i class="fas fa-chevron-right"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Step 4: Brand Preferences -->
+            <div class="field-group step" data-step="4">
+                <div class="step-header">
+                    <i class="fas fa-heart step-icon"></i>
+                    <h2>What are your favorite brands?</h2>
+                    <p>Select up to 5 brands</p>
+                </div>
+                <div id="brand-options" class="brand-grid">
+                    <button type="button" class="brand-btn" data-brand="FirstCry">
+                        <span>FirstCry</span>
+                        <i class="fas fa-check check-icon"></i>
+                    </button>
+                    <button type="button" class="brand-btn" data-brand="Westside">
+                        <span>Westside</span>
+                        <i class="fas fa-check check-icon"></i>
+                    </button>
+                    <button type="button" class="brand-btn" data-brand="Mothercare">
+                        <span>Mothercare</span>
+                        <i class="fas fa-check check-icon"></i>
+                    </button>
+                    <button type="button" class="brand-btn" data-brand="Hopscotch">
+                        <span>Hopscotch</span>
+                        <i class="fas fa-check check-icon"></i>
+                    </button>
+                    <button type="button" class="brand-btn" data-brand="Chicco">
+                        <span>Chicco</span>
+                        <i class="fas fa-check check-icon"></i>
+                    </button>
+                    <button type="button" class="brand-btn" data-brand="Pantaloons">
+                        <span>Pantaloons</span>
+                        <i class="fas fa-check check-icon"></i>
+                    </button>
+                    <button type="button" class="brand-btn" data-brand="Max Fashion">
+                        <span>Max Fashion</span>
+                        <i class="fas fa-check check-icon"></i>
+                    </button>
+                    <button type="button" class="brand-btn" data-brand="Peppermint">
+                        <span>Peppermint</span>
+                        <i class="fas fa-check check-icon"></i>
+                    </button>
+                    <button type="button" class="brand-btn" data-brand="Zero">
+                        <span>Zero</span>
+                        <i class="fas fa-check check-icon"></i>
+                    </button>
+                    <button type="button" class="brand-btn" data-brand="UCB">
+                        <span>UCB</span>
+                        <i class="fas fa-check check-icon"></i>
+                    </button>
+                    <button type="button" class="brand-btn" data-brand="Miniklub">
+                        <span>Miniklub</span>
+                        <i class="fas fa-check check-icon"></i>
+                    </button>
+                    <button type="button" class="brand-btn" data-brand="H&M">
+                        <span>H&M</span>
+                        <i class="fas fa-check check-icon"></i>
+                    </button>
+                    <button type="button" class="brand-btn" data-brand="Zara Kids">
+                        <span>Zara Kids</span>
+                        <i class="fas fa-check check-icon"></i>
+                    </button>
+                    <button type="button" class="brand-btn" data-brand="Others">
+                        <span>Others</span>
+                        <i class="fas fa-check check-icon"></i>
+                    </button>
+                </div>
+                
+                <div class="preferences-section">
+                    <label class="preferences-label">Any other preferences we should know?</label>
+                    <div class="textarea-group">
+                        <i class="fas fa-comment input-icon"></i>
+                        <textarea id="sfh-preferences" placeholder="e.g. more full sleeves, monsoon collection, darker colours, etc."></textarea>
+                    </div>
+                </div>
+
+                <div class="step-nav">
+                    <button type="button" class="back-btn">
+                        <i class="fas fa-chevron-left"></i> Back
+                    </button>
+                    <div class="nav-buttons">
+                        <button type="button" id="brands-next-btn" class="next-btn">
+                            Next <i class="fas fa-chevron-right"></i>
+                        </button>
+                        <button type="button" id="brands-skip-btn" class="skip-btn">
+                            Skip <i class="fas fa-forward"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Step 5: Scheduling -->
+            <div class="field-group step" data-step="5">
+                <div class="step-header">
+                    <i class="fas fa-calendar step-icon"></i>
+                    <h2>When should we come?</h2>
+                    <p>We'll bring 20-30 clothes from your favorite brands</p>
+                </div>
+                
+                <div class="scheduling-section">
+                    <label class="schedule-label">
+                        <i class="fas fa-calendar-day"></i>
+                        Select date:
+                    </label>
+                    <div class="input-group">
+                        <i class="fas fa-calendar input-icon"></i>
+                        <input type="date" id="datePicker" name="preferred_date" required>
+                    </div>
+                    
+                    <label class="schedule-label">
+                        <i class="fas fa-clock"></i>
+                        Preferred Time Slot:
+                    </label>
+                    <div class="input-group">
+                        <i class="fas fa-clock input-icon"></i>
+                        <select id="timeSlotDropdown" name="preferred_slot" required>
+                            <option value="">Select a time slot</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="step-nav">
+                    <button type="button" class="back-btn">
+                        <i class="fas fa-chevron-left"></i> Back
+                    </button>
+                    <button type="submit" id="submitForm" class="submit-btn" disabled>
+                        <i class="fas fa-check"></i> Book for free!
+                    </button>
+                </div>
+            </div>
+        </form>
+
+        <!-- Thank You Message -->
+        <div id="thankYouMessage" class="thank-you-card">
+            <div class="success-icon">
+                <i class="fas fa-check-circle"></i>
+            </div>
+            <h3>Thanks for booking an appointment with Zoddle!</h3>
+            <p>We'll come to your doorstep at your chosen time. WhatsApp us on <strong>8088036107</strong> for any questions!</p>
+            <button type="button" id="restart-btn" class="restart-btn">
+                <i class="fas fa-plus"></i> Book another appointment
+            </button>
+        </div>
+    </div>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: #333;
+        }
+
+        .sfh-banner {
+            margin-bottom: 2rem;
+            border-radius: 0 0 20px 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .sfh-banner img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .banner-mobile { display: none; }
+        .banner-desktop { display: block; }
+
+        @media (max-width: 768px) {
+            .banner-desktop { display: none; }
+            .banner-mobile { display: block; }
+        }
+
+        #sfh-container {
+            max-width: 700px;
+            margin: 0 auto;
+            padding: 0 1rem;
+            text-align: center;
+        }
+
+        /* Progress Indicator */
+        .progress-indicator {
+            margin-bottom: 2rem;
+            padding: 1rem;
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+
+        /* Form Container */
+        #sfhForm {
+            background: rgba(255,255,255,0.95);
+            backdrop-filter: blur(20px);
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            border: 1px solid rgba(255,255,255,0.3);
+        }
+
+        /* Step Visibility */
+        .field-group.step {
+            display: none;
+            animation: fadeInUp 0.5s ease-out;
+        }
+
+        .field-group.step.active {
+            display: block;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Step Header */
+        .step-header {
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .step-icon {
+            font-size: 3rem;
+            color: #FFABCE;
+            margin-bottom: 1rem;
+            display: block;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+
+        .step-header h2 {
+            font-size: 1.8rem;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 0.5rem;
+        }
+
+        .step-header p {
+            color: #666;
+            font-size: 1rem;
+        }
+
+        .step-label {
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            display: block;
+            font-size: 1.2rem;
+            color: #333;
+        }
+
+        /* Gender Selection */
+        .gender-selection {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin-bottom: 2rem;
+        }
+
+        .gender-btn {
+            background: linear-gradient(135deg, #FFABCE, #FF8FB9);
+            border: none;
+            color: white;
+            padding: 2rem 3rem;
+            border-radius: 15px;
+            cursor: pointer;
+            font-size: 1.1rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+            min-width: 150px;
+            box-shadow: 0 10px 25px rgba(255, 171, 206, 0.3);
+        }
+
+        .gender-btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(255, 171, 206, 0.4);
+        }
+
+        .gender-btn i {
+            font-size: 2rem;
+        }
+
+        /* Age Selection */
+        .age-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .age-btn {
+            background: rgba(255, 171, 206, 0.1);
+            border: 2px solid #FFABCE;
+            color: #333;
+            padding: 1rem;
+            border-radius: 12px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .age-btn:hover {
+            background: #FFABCE;
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(255, 171, 206, 0.3);
+        }
+
+        /* Form Inputs */
+        .form-row {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .input-group {
+            position: relative;
+            flex: 1;
+        }
+
+        .address-input {
+            flex: 2;
+        }
+
+        .input-icon {
+            position: absolute;
+            left: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #FFABCE;
+            z-index: 1;
+        }
+
+        input, select, textarea {
+            width: 100%;
+            padding: 1rem 1rem 1rem 3rem;
+            border: 2px solid #e1e5e9;
+            border-radius: 12px;
+            font-size: 1rem;
+            font-family: inherit;
+            transition: all 0.3s ease;
+            background: rgba(255,255,255,0.9);
+        }
+
+        input:focus, select:focus, textarea:focus {
+            outline: none;
+            border-color: #FFABCE;
+            box-shadow: 0 0 0 3px rgba(255, 171, 206, 0.1);
+            background: white;
+        }
+
+        textarea {
+            min-height: 100px;
+            resize: vertical;
+            padding-top: 1rem;
+        }
+
+        .textarea-group {
+            position: relative;
+        }
+
+        .textarea-group .input-icon {
+            top: 1.5rem;
+        }
+
+        /* Brand Selection */
+        .brand-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 0.75rem;
+            margin-bottom: 2rem;
+        }
+
+        .brand-btn {
+            background: white;
+            color: #333;
+            border: 2px solid #e1e5e9;
+            border-radius: 12px;
+            padding: 0.75rem 1rem;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 50px;
+        }
+
+        .brand-btn:hover {
+            border-color: #FFABCE;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .brand-btn.selected {
+            background: linear-gradient(135deg, #FFABCE, #FF8FB9);
+            color: white;
+            border-color: #FFABCE;
+            box-shadow: 0 8px 20px rgba(255, 171, 206, 0.3);
+        }
+
+        .check-icon {
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            background: #28a745;
+            color: white;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.7rem;
+        }
+
+        .brand-btn.selected .check-icon {
+            display: flex;
+        }
+
+        /* Preferences Section */
+        .preferences-section {
+            margin-top: 2rem;
+            text-align: left;
+        }
+
+        .preferences-label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 0.75rem;
+            color: #333;
+        }
+
+        /* Scheduling */
+        .scheduling-section {
+            text-align: left;
+            margin-bottom: 2rem;
+        }
+
+        .schedule-label {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-weight: 600;
+            margin-bottom: 0.75rem;
+            margin-top: 1.5rem;
+            color: #333;
+        }
+
+        .schedule-label:first-child {
+            margin-top: 0;
+        }
+
+        /* Navigation */
+        .step-nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 1px solid #e1e5e9;
+        }
+
+        .back-btn {
+            background: none;
+            border: none;
+            color: #666;
+            font-weight: 500;
+            padding: 0.75rem 1rem;
+            cursor: pointer;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .back-btn:hover {
+            background: rgba(102, 102, 102, 0.1);
+            color: #333;
+        }
+
+        .next-btn, .submit-btn {
+            background: linear-gradient(135deg, #FFABCE, #FF8FB9);
+            border: none;
+            color: white;
+            padding: 0.75rem 2rem;
+            border-radius: 12px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            box-shadow: 0 5px 15px rgba(255, 171, 206, 0.3);
+        }
+
+        .next-btn:hover, .submit-btn:hover:not(:disabled) {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(255, 171, 206, 0.4);
+        }
+
+        .submit-btn:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+            box-shadow: none;
+        }
+
+        .skip-btn {
+            background: rgba(108, 117, 125, 0.1);
+            border: 2px solid #6c757d;
+            color: #6c757d;
+            padding: 0.75rem 1.5rem;
+            border-radius: 12px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-left: 0.5rem;
+        }
+
+        .skip-btn:hover {
+            background: #6c757d;
+            color: white;
+        }
+
+        .nav-buttons {
+            display: flex;
+            align-items: center;
+        }
+
+        /* Thank You Card */
+        .thank-you-card {
+            display: none;
+            background: rgba(255,255,255,0.95);
+            backdrop-filter: blur(20px);
+            border-radius: 20px;
+            padding: 3rem 2rem;
+            text-align: center;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            border: 1px solid rgba(255,255,255,0.3);
+        }
+
+        .success-icon {
+            font-size: 4rem;
+            color: #28a745;
+            margin-bottom: 1.5rem;
+            animation: bounceIn 0.8s ease-out;
+        }
+
+        @keyframes bounceIn {
+            0% { transform: scale(0); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+
+        .thank-you-card h3 {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 1rem;
+        }
+
+        .thank-you-card p {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            color: #666;
+            margin-bottom: 2rem;
+        }
+
+        .restart-btn {
+            background: linear-gradient(135deg, #FFABCE, #FF8FB9);
+            border: none;
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 12px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            box-shadow: 0 8px 20px rgba(255, 171, 206, 0.3);
+        }
+
+        .restart-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 30px rgba(255, 171, 206, 0.4);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            #sfh-container {
+                padding: 0 0.5rem;
+            }
+
+            #sfhForm {
+                padding: 1.5rem;
+                border-radius: 15px;
+            }
+
+            .gender-selection {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .gender-btn {
+                padding: 1.5rem 2rem;
+                min-width: 200px;
+            }
+
+            .form-row {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .age-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 0.75rem;
+            }
+
+            .brand-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 0.5rem;
+            }
+
+            .step-nav {
+                flex-direction: column;
+                gap: 1rem;
+                align-items: stretch;
+            }
+
+            .nav-buttons {
+                justify-content: center;
+                gap: 0.5rem;
+            }
+
+            .step-header h2 {
+                font-size: 1.5rem;
+            }
+
+            .thank-you-card {
+                padding: 2rem 1.5rem;
+            }
+
+            .thank-you-card h3 {
+                font-size: 1.6rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .age-grid, .brand-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .gender-btn {
+                min-width: 100%;
+            }
+        }
+    </style>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            
+            let currentStep = 1;
+            const formData = {
+                gender: '',
+                age: '',
+                brands: [],
+            };
+
+            const formElement = document.getElementById('sfhForm');
+            const thankYouMessage = document.getElementById('thankYouMessage');
+            const stepDots = document.getElementById("stepDots");
+            
+            function showStep(step) {
+                document.querySelectorAll('.step').forEach(el => el.classList.remove('active'));
+                const activeStep = document.querySelector(`.step[data-step="${step}"]`);
+                if (activeStep) {
+                    activeStep.classList.add('active');
+                }
+                updateProgressDots(step);
+            }
+
+            function nextStep() {
+                currentStep++;
+                showStep(currentStep);
+            }
+
+            function previousStep() {
+                currentStep--;
+                showStep(currentStep);
+            }
+
+            function updateProgressDots(step) {
+                const totalSteps = 5;
+                const dotContainer = document.getElementById("stepDots");
+                if (!dotContainer) return;
+                dotContainer.innerHTML = '';
+                for (let i = 1; i <= totalSteps; i++) {
+                    const dot = document.createElement("span");
+                    dot.style.cssText = `height:12px; width:12px; margin:0 6px; display:inline-block; border-radius:50%; background-color:${i === step ? '#FFABCE' : 'rgba(255,255,255,0.4)'}; transition: all 0.3s ease; border: 2px solid ${i === step ? '#FF8FB9' : 'rgba(255,255,255,0.6)'};`;
+                    stepDots.appendChild(dot);
+                }
+            }
+
+            // --- EVENT LISTENERS ---
+
+            document.querySelectorAll('.back-btn').forEach(btn => {
+                btn.addEventListener('click', previousStep);
+            });
+
+            document.querySelectorAll('.step[data-step="1"] button').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const gender = this.getAttribute('data-gender');
+                    formData.gender = gender;
+                    nextStep();
+                });
+            });
+
+            document.querySelectorAll('#ageOptions button').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    formData.age = this.getAttribute('data-age');
+                    nextStep();
+                });
+            });
+
+            document.getElementById('contact-next-btn').addEventListener('click', function() {
+                const name = document.querySelector('[name="contact[name]"]').value;
+                const phone = document.getElementById('sfh-phone').value;
+                if (!name.trim() || !phone.trim()) {
+                    alert('Please fill in your name and phone number.');
+                    return;
+                }
+                nextStep();
+            });
+
+            document.getElementById('brands-next-btn').addEventListener('click', nextStep);
+            
+            document.getElementById('brands-skip-btn').addEventListener('click', nextStep);
+            
+            document.getElementById('restart-btn').addEventListener('click', function() {
+                window.location.href = window.location.pathname;
+            });
+
+            document.querySelectorAll('.brand-btn').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    btn.classList.toggle('selected');
+                    formData.brands = Array.from(document.querySelectorAll('.brand-btn.selected'))
+                        .map(b => b.dataset.brand);
+                    
+                    if (formData.brands.length > 5) {
+                        btn.classList.remove('selected');
+                        formData.brands = Array.from(document.querySelectorAll('.brand-btn.selected'))
+                            .map(b => b.dataset.brand);
+                        alert('You can only select up to 5 brands.');
+                    }
+                });
+            });
+            
+            const timeSlotDropdown = document.getElementById("timeSlotDropdown");
+            const datePicker = document.getElementById("datePicker");
+
+            function updateTimeSlots() {
+                timeSlotDropdown.innerHTML = '<option value="">Select a time slot</option>';
+                const selectedDate = new Date(datePicker.value + "T00:00:00");
+                if (isNaN(selectedDate.getTime())) return;
+
+                const now = new Date();
+                const isToday = selectedDate.toDateString() === now.toDateString();
+                const bufferTime = new Date(now.getTime() + 2 * 60 * 60 * 1000);
+
+                for (let hour = 8; hour < 22; hour++) {
+                    for (let min = 0; min < 60; min += 30) {
+                        const slotTime = new Date(selectedDate);
+                        slotTime.setHours(hour, min, 0, 0);
+                        if (!isToday || slotTime > bufferTime) {
+                            const h = slotTime.getHours().toString().padStart(2, '0');
+                            const m = slotTime.getMinutes().toString().padStart(2, '0');
+                            const option = document.createElement("option");
+                            option.value = `${h}:${m}`;
+                            option.textContent = `${h}:${m}`;
+                            timeSlotDropdown.appendChild(option);
+                        }
+                    }
+                }
+                document.getElementById('submitForm').disabled = true;
+            }
+
+            datePicker?.addEventListener('change', updateTimeSlots);
+            timeSlotDropdown?.addEventListener('change', () => {
+                document.getElementById('submitForm').disabled = !timeSlotDropdown.value;
+            });
+
+            datePicker?.addEventListener('click', function() {
+                try {
+                    this.showPicker();
+                } catch (e) {
+                    // showPicker() is not supported in all browsers, so this will fall back gracefully.
+                }
+            });
+
+            // --- FORM SUBMISSION HANDLING ---
+            formElement.addEventListener('submit', function(e) {
+                const name = document.querySelector('[name="contact[name]"]').value;
+                const phone = document.getElementById('sfh-phone').value;
+                const address = document.getElementById('sfh-address').value;
+                const pincode = document.getElementById('sfh-pincode').value;
+                const preferences = document.getElementById('sfh-preferences').value;
+                const date = datePicker.value;
+                const time = timeSlotDropdown.value;
+
+                document.getElementById('customer-email').value = `${phone.replace(/\s+/g, '')}@zoddle.in`;
+                
+                const noteContent = `
+                  New "Shop From Home" Appointment
+                  ---------------------------------
+                  Child's Gender: ${formData.gender}
+                  Child's Size: ${formData.age}
+                  Parent's Name: ${name}
+                  Phone: ${phone}
+                  Address: ${address}
+                  Pin Code: ${pincode}
+                  
+                  Appointment Date: ${date}
+                  Appointment Time: ${time}
+                  
+                  Favorite Brands: ${formData.brands.join(', ') || 'None selected'}
+                  Other Preferences: ${preferences || 'None'}
+                `;
+                document.getElementById('customer-note').value = noteContent.trim();
+            });
+            
+            // --- INITIALIZATION ---
+            if (window.location.search.includes('customer_posted=true')) {
+                formElement.style.display = 'none';
+                stepDots.style.display = 'none';
+                thankYouMessage.style.display = 'block';
+            } else {
+                const today = new Date().toISOString().split('T')[0];
+                datePicker.setAttribute('min', today);
+                showStep(currentStep);
+            }
+        });
+    </script>
+</body>
 </html>
