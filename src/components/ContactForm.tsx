@@ -48,12 +48,12 @@ const ContactForm = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-background via-secondary to-accent/20 py-8">
+    <div className="min-h-screen bg-background py-16">
       <div className="container mx-auto px-4">
         <div className="max-w-2xl mx-auto">
           {/* Header */}
-          <div className="text-center mb-12">
-            <h1 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent mb-4">
+          <div className="text-center mb-16">
+            <h1 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent mb-6">
               Tell us about yourself
             </h1>
             <p className="text-lg text-muted-foreground">
@@ -62,9 +62,9 @@ const ContactForm = () => {
           </div>
 
           {/* Form Card */}
-          <Card className="shadow-xl">
+          <Card className="shadow-lg bg-white">
             <CardHeader>
-              <CardTitle className="text-2xl text-center">Contact Information</CardTitle>
+              <CardTitle className="text-2xl text-center text-foreground">Contact Information</CardTitle>
             </CardHeader>
             <CardContent>
               <form onSubmit={handleSubmit} className="space-y-6">
@@ -150,9 +150,8 @@ const ContactForm = () => {
                 {/* Submit Button */}
                 <Button 
                   type="submit"
-                  variant="default" 
                   size="lg"
-                  className="w-full h-12"
+                  className="w-full h-12 bg-primary hover:bg-primary/90 text-white rounded-lg"
                 >
                   Continue to Scheduling
                 </Button>

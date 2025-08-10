@@ -64,12 +64,12 @@ const Scheduling = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-background via-secondary to-accent/20 py-8">
+    <div className="min-h-screen bg-background py-16">
       <div className="container mx-auto px-4">
         <div className="max-w-4xl mx-auto">
           {/* Header */}
-          <div className="text-center mb-12">
-            <h1 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent mb-4">
+          <div className="text-center mb-16">
+            <h1 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent mb-6">
               When should we come?
             </h1>
             <p className="text-lg text-muted-foreground">
@@ -79,9 +79,10 @@ const Scheduling = () => {
 
           <div className="grid md:grid-cols-2 gap-8">
             {/* Calendar Section */}
-            <Card className="shadow-xl">
+            <Card className="shadow-lg bg-white">
               <CardHeader>
-                <CardTitle className="text-xl">Select a Date</CardTitle>
+                <CardTitle className="text-xl text-foreground">Select a Date</CardTitle>
+                <p className="text-sm text-muted-foreground">August 2025</p>
               </CardHeader>
               <CardContent className="flex justify-center">
                 <Calendar
@@ -95,12 +96,16 @@ const Scheduling = () => {
             </Card>
 
             {/* Time Slot Section */}
-            <Card className="shadow-xl">
+            <Card className="shadow-lg bg-white">
               <CardHeader>
-                <CardTitle className="text-xl">Select Time Slot</CardTitle>
-                {selectedDate && (
+                <CardTitle className="text-xl text-foreground">Select Time Slot</CardTitle>
+                {selectedDate ? (
                   <p className="text-sm text-muted-foreground">
                     Available slots for {format(selectedDate, "MMMM d, yyyy")}
+                  </p>
+                ) : (
+                  <p className="text-sm text-muted-foreground">
+                    Please select a date first
                   </p>
                 )}
               </CardHeader>
@@ -178,11 +183,10 @@ const Scheduling = () => {
             </Button>
             
             <Button 
-              variant="default" 
               size="lg"
               onClick={handleConfirm}
               disabled={!selectedDate || !selectedTimeSlot}
-              className="px-12"
+              className="px-12 bg-primary hover:bg-primary/90 text-white rounded-lg"
             >
               Confirm Booking
             </Button>

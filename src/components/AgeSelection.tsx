@@ -41,58 +41,40 @@ const AgeSelection = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-background via-secondary/30 to-accent/10 flex items-center justify-center relative overflow-hidden">
-      {/* Floating decorative elements */}
-      <div className="absolute top-20 left-10 text-4xl animate-float opacity-30">🎂</div>
-      <div className="absolute top-40 right-20 text-3xl animate-wiggle opacity-40">📏</div>
-      <div className="absolute bottom-40 left-20 text-5xl animate-bounce-gentle opacity-30">🎈</div>
-      
-      <div className="container mx-auto px-4 relative z-10">
-        <div className="max-w-3xl mx-auto text-center">
+    <div className="min-h-screen bg-background flex items-center justify-center">
+      <div className="container mx-auto px-4">
+        <div className="max-w-4xl mx-auto text-center">
           {/* Header */}
-          <div className="mb-12 sm:mb-16">
-            <div className="text-5xl sm:text-6xl mb-4 animate-bounce-gentle">👶➡️🧒</div>
-            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold bg-gradient-to-r from-primary via-accent to-primary bg-clip-text text-transparent mb-4 leading-tight px-4">
+          <div className="mb-16">
+            <h1 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent mb-6 leading-tight">
               Please tell us the age of your kid
             </h1>
-            <div className="w-24 h-1 bg-gradient-to-r from-primary to-accent mx-auto mb-4 rounded-full"></div>
-            <p className="text-lg sm:text-xl text-muted-foreground max-w-2xl mx-auto">
-              ✨ This helps us curate the perfect collection for your little one ✨
+            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+              This helps us curate the perfect collection for your little one
             </p>
           </div>
 
           {/* Age Display */}
           <div className="mb-12">
-            <div className="glass rounded-2xl p-6 sm:p-8 mx-auto max-w-md mb-8">
-              <div className="text-sm text-muted-foreground mb-2">Selected Age</div>
-              <div className="text-4xl sm:text-5xl md:text-6xl font-bold bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent animate-bounce-gentle">
-                {getAgeText(age[0])}
-              </div>
-              <div className="text-lg text-muted-foreground mt-2">Perfect fit guaranteed!</div>
+            <div className="text-6xl font-bold bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent mb-4">
+              {getAgeText(age[0])}
             </div>
           </div>
 
           {/* Age Slider */}
-          <div className="mb-12 px-4 sm:px-8">
-            <div className="glass rounded-2xl p-6 sm:p-8">
-              <h3 className="text-lg font-semibold mb-6 text-center">Use the slider to select age</h3>
+          <div className="mb-12 max-w-2xl mx-auto">
+            <div className="bg-white rounded-2xl p-8 shadow-lg">
               <Slider
                 value={age}
                 onValueChange={setAge}
                 max={12}
                 min={0}
                 step={1}
-                className="w-full mb-4"
+                className="w-full mb-6"
               />
-              <div className="flex justify-between text-sm text-muted-foreground mt-4 px-2">
-                <span className="flex items-center gap-1">
-                  <span className="text-lg">👶</span>
-                  <span>0-12 months</span>
-                </span>
-                <span className="flex items-center gap-1">
-                  <span>12+ years</span>
-                  <span className="text-lg">🧒</span>
-                </span>
+              <div className="flex justify-between text-sm text-muted-foreground">
+                <span>0-12 months</span>
+                <span>12+ years</span>
               </div>
             </div>
           </div>
@@ -107,10 +89,10 @@ const AgeSelection = () => {
                   variant={age[0] === option.value ? "default" : "outline"}
                   size="sm"
                   onClick={() => setAge([option.value])}
-                  className={`text-xs sm:text-sm py-3 transition-all duration-300 ${
+                  className={`py-3 transition-all duration-300 ${
                     age[0] === option.value 
-                      ? 'btn-toddler text-white shadow-lg scale-105' 
-                      : 'hover:scale-105 glass'
+                      ? 'bg-primary text-white shadow-lg' 
+                      : 'bg-white border-gray-200 hover:border-primary'
                   }`}
                 >
                   {option.label}
@@ -130,10 +112,9 @@ const AgeSelection = () => {
             </Button>
             
             <Button 
-              variant="default" 
               size="lg"
               onClick={handleNext}
-              className="px-12"
+              className="bg-primary hover:bg-primary/90 text-white px-12 rounded-lg"
             >
               Next
             </Button>

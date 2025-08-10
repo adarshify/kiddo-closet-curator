@@ -39,131 +39,89 @@ const LandingPage = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-background via-secondary/30 to-accent/10 relative overflow-hidden">
-      {/* Floating decorative elements */}
-      <div className="absolute top-20 left-10 text-6xl animate-float opacity-30">🎈</div>
-      <div className="absolute top-40 right-20 text-4xl animate-bounce-gentle opacity-40">🧸</div>
-      <div className="absolute bottom-40 left-20 text-5xl animate-wiggle opacity-30">⭐</div>
-      <div className="absolute bottom-20 right-10 text-3xl animate-float opacity-40">🎀</div>
-      
-      <div className="container mx-auto px-4 py-8 sm:py-12 relative z-10">
+    <div className="min-h-screen bg-background relative overflow-hidden">
+      <div className="container mx-auto px-4 py-16 relative z-10">
         {/* Header */}
-        <div className="text-center mb-12 sm:mb-16">
-          <div className="mb-6">
-            <div className="text-6xl sm:text-8xl mb-4 animate-bounce-gentle">👶</div>
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold bg-gradient-to-r from-primary via-accent to-primary bg-clip-text text-transparent mb-4 leading-tight">
-              Toddler's Closet
-            </h1>
-            <div className="w-24 h-1 bg-gradient-to-r from-primary to-accent mx-auto mb-4 rounded-full"></div>
-          </div>
-          <p className="text-lg sm:text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed">
-            ✨ Curated collections of beautiful children's clothing delivered to your doorstep ✨
+        <div className="text-center mb-16">
+          <h1 className="text-5xl sm:text-6xl font-bold bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent mb-6 leading-tight">
+            Zoddle
+          </h1>
+          <p className="text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
+            Curated collections of beautiful children's clothing delivered to your doorstep
           </p>
-          <div className="flex justify-center gap-2 mt-4">
-            <span className="text-2xl animate-wiggle">🌈</span>
-            <span className="text-2xl animate-bounce-gentle">👕</span>
-            <span className="text-2xl animate-float">👗</span>
-            <span className="text-2xl animate-wiggle">🧦</span>
-          </div>
         </div>
 
-        {/* Banners Grid */}
-        <div className="grid gap-6 sm:gap-8 max-w-6xl mx-auto">
-          {banners.map((banner, index) => (
-            <div
-              key={banner.id}
-              className="group relative overflow-hidden rounded-3xl shadow-2xl hover:shadow-3xl transition-all duration-700 cursor-pointer transform hover:-translate-y-2"
-              onClick={() => handleBannerClick(banner)}
-              style={{ animationDelay: `${index * 200}ms` }}
-            >
-              <div className="aspect-[16/9] md:aspect-[21/9] relative glass">
-                <img
-                  src={banner.image}
-                  alt={banner.title}
-                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
-                />
-                <div className="absolute inset-0 bg-gradient-to-r from-primary/70 via-accent/30 to-transparent" />
-                
-                {/* Decorative elements */}
-                <div className="absolute top-4 right-4 text-3xl sm:text-4xl animate-bounce-gentle opacity-80">
-                  {banner.id === 'infant' ? '🍼' : banner.id === 'monsoon' ? '☔' : '🌟'}
-                </div>
-                
-                {/* Content Overlay */}
-                <div className="absolute inset-0 flex items-center">
-                  <div className="text-white p-6 sm:p-8 md:p-12 max-w-3xl">
-                    <div className="flex items-center gap-3 mb-3">
-                      <div className="w-2 h-2 bg-white rounded-full animate-pulse"></div>
-                      <span className="text-sm sm:text-base font-medium uppercase tracking-wide opacity-90">
-                        Premium Collection
-                      </span>
-                    </div>
-                    <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-3 leading-tight">
-                      {banner.title}
-                    </h2>
-                    <p className="text-base sm:text-lg md:text-xl mb-4 opacity-95 font-medium">
-                      {banner.subtitle}
-                    </p>
-                    <p className="text-sm sm:text-base mb-6 opacity-85 leading-relaxed max-w-xl">
-                      {banner.description}
-                    </p>
-                    <Button 
-                      variant="banner" 
-                      size="lg"
-                      className="btn-toddler text-white shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 px-6 sm:px-8 py-3 text-base sm:text-lg font-semibold"
-                    >
-                      ✨ Explore Collection
-                    </Button>
-                  </div>
+        {/* Main Banner */}
+        <div className="max-w-4xl mx-auto mb-16">
+          <div
+            className="relative overflow-hidden rounded-2xl shadow-xl cursor-pointer"
+            onClick={() => handleBannerClick(banners[0])}
+          >
+            <div className="aspect-[16/9] relative">
+              <img
+                src={banners[0].image}
+                alt={banners[0].title}
+                className="w-full h-full object-cover"
+              />
+              <div className="absolute inset-0 bg-gradient-to-r from-black/40 to-transparent" />
+              
+              {/* Content Overlay */}
+              <div className="absolute inset-0 flex items-center">
+                <div className="text-white p-8 max-w-lg">
+                  <h2 className="text-3xl md:text-4xl font-bold mb-3 leading-tight">
+                    {banners[0].title}
+                  </h2>
+                  <p className="text-lg mb-6 opacity-95">
+                    {banners[0].subtitle}
+                  </p>
+                  <p className="text-sm mb-6 opacity-85 leading-relaxed">
+                    {banners[0].description}
+                  </p>
+                  <Button 
+                    className="bg-primary hover:bg-primary/90 text-white px-6 py-3 rounded-lg font-medium"
+                  >
+                    Explore Collection
+                  </Button>
                 </div>
               </div>
             </div>
-          ))}
+          </div>
         </div>
 
-        {/* Features Section */}
-        <div className="mt-16 sm:mt-20 grid sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 max-w-5xl mx-auto">
-          <div className="text-center p-6 sm:p-8 glass rounded-2xl hover:scale-105 transition-all duration-300 hover:shadow-xl">
-            <div className="w-20 h-20 bg-gradient-to-br from-primary/20 to-accent/20 rounded-full flex items-center justify-center mx-auto mb-6 animate-bounce-gentle">
-              <span className="text-3xl">🏠</span>
+        {/* Second Banner */}
+        <div className="max-w-4xl mx-auto">
+          <div
+            className="relative overflow-hidden rounded-2xl shadow-xl cursor-pointer"
+            onClick={() => handleBannerClick(banners[1])}
+          >
+            <div className="aspect-[16/9] relative">
+              <img
+                src={banners[1].image}
+                alt={banners[1].title}
+                className="w-full h-full object-cover"
+              />
+              <div className="absolute inset-0 bg-gradient-to-r from-black/40 to-transparent" />
+              
+              {/* Content Overlay */}
+              <div className="absolute inset-0 flex items-center">
+                <div className="text-white p-8 max-w-lg">
+                  <h2 className="text-3xl md:text-4xl font-bold mb-3 leading-tight">
+                    {banners[1].title}
+                  </h2>
+                  <p className="text-lg mb-6 opacity-95">
+                    {banners[1].subtitle}
+                  </p>
+                  <p className="text-sm mb-6 opacity-85 leading-relaxed">
+                    {banners[1].description}
+                  </p>
+                  <Button 
+                    className="bg-primary hover:bg-primary/90 text-white px-6 py-3 rounded-lg font-medium"
+                  >
+                    Explore Collection
+                  </Button>
+                </div>
+              </div>
             </div>
-            <h3 className="text-lg sm:text-xl font-bold mb-3 bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
-              Home Delivery
-            </h3>
-            <p className="text-muted-foreground leading-relaxed">
-              Try before you buy in the comfort of your home with our doorstep service
-            </p>
-          </div>
-          <div className="text-center p-6 sm:p-8 glass rounded-2xl hover:scale-105 transition-all duration-300 hover:shadow-xl">
-            <div className="w-20 h-20 bg-gradient-to-br from-primary/20 to-accent/20 rounded-full flex items-center justify-center mx-auto mb-6 animate-wiggle">
-              <span className="text-3xl">✨</span>
-            </div>
-            <h3 className="text-lg sm:text-xl font-bold mb-3 bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
-              Curated Collections
-            </h3>
-            <p className="text-muted-foreground leading-relaxed">
-              Handpicked styles from premium brands specially chosen for your little ones
-            </p>
-          </div>
-          <div className="text-center p-6 sm:p-8 glass rounded-2xl hover:scale-105 transition-all duration-300 hover:shadow-xl sm:col-span-2 lg:col-span-1">
-            <div className="w-20 h-20 bg-gradient-to-br from-primary/20 to-accent/20 rounded-full flex items-center justify-center mx-auto mb-6 animate-float">
-              <span className="text-3xl">💝</span>
-            </div>
-            <h3 className="text-lg sm:text-xl font-bold mb-3 bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
-              Easy Returns
-            </h3>
-            <p className="text-muted-foreground leading-relaxed">
-              Hassle-free returns for items that don't fit perfectly - customer satisfaction guaranteed
-            </p>
-          </div>
-        </div>
-        
-        {/* Call to Action */}
-        <div className="mt-16 text-center">
-          <div className="inline-flex items-center gap-2 text-sm text-muted-foreground mb-4">
-            <span className="animate-pulse">👇</span>
-            <span>Click any collection above to get started</span>
-            <span className="animate-pulse">👇</span>
           </div>
         </div>
       </div>
